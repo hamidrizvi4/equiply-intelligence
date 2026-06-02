@@ -46,7 +46,7 @@ The main analytics dashboard displays critical metrics and lifecycle status at a
 - **Warning Status:** 207 units approaching end-of-life
 - **Date Confidence:** 52% of serials parsed with high confidence, 48% with fallback logic
 
-![Dashboard Overview](docs/screenshots/01-dashboard-overview.png)
+![Dashboard Overview](docs/c.png)
 
 ### Device Type Distribution
 Interactive donut chart showing the breakdown of all equipment types with real-time percentages:
@@ -55,7 +55,7 @@ Interactive donut chart showing the breakdown of all equipment types with real-t
 - 20+ additional specialized medical device types
 - Toggle between Device Type and Lifecycle Status views
 
-![Device Distribution](docs/screenshots/02-device-distribution.png)
+![Device Distribution](docs/a.png)
 
 ### Enriched Data Table
 Fully sorted table showing all enriched equipment records:
@@ -64,7 +64,7 @@ Fully sorted table showing all enriched equipment records:
 - **Status indicators:** Critical (red), Warning (yellow), Good (green)
 - **Confidence bars:** Visual indicator of serial number parsing accuracy (100% or 30%)
 
-![Data Table](docs/screenshots/03-enriched-table.png)
+![Data Table](docs/b.png)
 
 ## 💻 Running the Project Locally
 
