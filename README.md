@@ -18,7 +18,7 @@
   * **Domain Classification:** Uses a custom medical dictionary to instantly map generic models (e.g., "ZOLL RSERIES") to standard EAM categories (e.g., "Defibrillator").
 * **Predictive Lifecycle Engine:** Calculates the age of every asset and flags equipment as 🟢 Good, 🟡 Warning, or 🔴 Critical based on specific device-type lifespans.
 * **Data Confidence Scoring:** Automatically flags rows that require manual auditing if serial number extraction falls back to default logic.
-* **Interactive EAM Dashboard:** Built with Tailwind CSS and Recharts. Includes advanced filtering, search, and real-time KPI generation (Total Assets, Data Health, Critical Replacements).
+* **Interactive EAM Dashboard:** Built with Tailwind CSS and hand-crafted SVG visualizations (zero charting dependencies). Includes advanced filtering, search, and real-time KPI generation (Total Assets, Data Health, Critical Replacements).
 * **One-Click Export:** Strips application-specific UI metadata and exports a clean, enriched CSV perfectly formatted for the "Minimum Submission" tier requirements.
 
 ## 🧠 How the Data Pipeline Works (The Logic)
@@ -34,8 +34,37 @@ Because we could not rely on external databases, we built a robust pattern-match
 * **Framework:** React (Vite)
 * **Styling:** Tailwind CSS (Custom Light Mode Theme)
 * **Data Parsing:** PapaParse (Fast, in-browser CSV processing)
-* **Data Visualization:** Recharts
+* **Data Visualization:** Custom SVG charts (no external charting library)
 * **Icons:** Lucide-React
+
+## 📸 Screenshots
+
+### Dashboard Overview
+The main analytics dashboard displays critical metrics and lifecycle status at a glance:
+- **Total Assets:** 801 medical devices across 25+ types
+- **Critical Devices:** 478 units (60%) requiring urgent replacement planning
+- **Warning Status:** 207 units approaching end-of-life
+- **Date Confidence:** 52% of serials parsed with high confidence, 48% with fallback logic
+
+![Dashboard Overview](docs/screenshots/01-dashboard-overview.png)
+
+### Device Type Distribution
+Interactive donut chart showing the breakdown of all equipment types with real-time percentages:
+- Patient Monitors (25.1%) — the largest category
+- Defibrillators (15.4%), Infusion Pumps (19.7%)
+- 20+ additional specialized medical device types
+- Toggle between Device Type and Lifecycle Status views
+
+![Device Distribution](docs/screenshots/02-device-distribution.png)
+
+### Enriched Data Table
+Fully sorted table showing all enriched equipment records:
+- **Columns:** Manufacturer, Model, Serial Number, Device Type, Manufactured Date, Status, Confidence %
+- **Sorted ascending by manufactured date** — equipment from 2010–2016 visible
+- **Status indicators:** Critical (red), Warning (yellow), Good (green)
+- **Confidence bars:** Visual indicator of serial number parsing accuracy (100% or 30%)
+
+![Data Table](docs/screenshots/03-enriched-table.png)
 
 ## 💻 Running the Project Locally
 

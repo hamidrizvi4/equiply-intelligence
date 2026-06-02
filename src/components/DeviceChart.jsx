@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 
 // ─── Colour palette for device-type slices ────────────────────────────────────
 const PALETTE = [
@@ -23,14 +23,13 @@ function Donut({ slices, total, centerLabel, centerSub }) {
   const strokeWidth = 14;
   const circumference = 2 * Math.PI * radius;
 
-  let cumulative = 0;
-  const segments = slices.map((s) => {
+  const segments = [];
+  slices.reduce((cumulative, s) => {
     const pct = total > 0 ? s.count / total : 0;
     const stroke = pct * circumference;
-    const offset = cumulative;
-    cumulative += stroke;
-    return { ...s, pct, stroke, offset };
-  });
+    segments.push({ ...s, pct, stroke, offset: cumulative });
+    return cumulative + stroke;
+  }, 0);
 
   return (
     <div className="relative w-48 h-48 mx-auto">

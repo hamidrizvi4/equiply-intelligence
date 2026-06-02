@@ -115,8 +115,9 @@ export const processPipeline = (file) => {
     Papa.parse(file, {
       header: true,
       skipEmptyLines: true,
-      // Fixes the space in 'serial number' from the raw CSV
-      transformHeader: (header) => header.trim().replace(/\s+/g, '_'), 
+      // Normalize headers: lowercase + collapse spaces to underscores so that
+      // "Serial Number", "serial number", and "SERIAL_NUMBER" all map the same.
+      transformHeader: (header) => header.trim().toLowerCase().replace(/\s+/g, '_'),
       complete: (results) => {
         const enrichedData = results.data.map(row => {
           const manufacturer = (row.manufacturer || "").trim().toUpperCase();

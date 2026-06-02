@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import { useState, useMemo } from "react";
 import {
   RefreshCcw,
   ShieldAlert,
@@ -12,6 +12,12 @@ import AssetTable from "./AssetTable";
 // ─── CSV Exporter ─────────────────────────────────────────────────────────────
 function exportToCSV(data) {
   if (!data.length) return;
+  // Sort by manufactured_date ascending (same as table display)
+  const sortedData = [...data].sort((a, b) => {
+    const da = a.manufactured_date || "";
+    const db = b.manufactured_date || "";
+    return da.localeCompare(db);
+  });
   const headers = [
     "manufacturer",
     "model",
@@ -21,7 +27,7 @@ function exportToCSV(data) {
     "status",
     "confidenceScore",
   ];
-  const rows = data.map((row) =>
+  const rows = sortedData.map((row) =>
     headers
       .map((h) => {
         const val = row[h] ?? "";

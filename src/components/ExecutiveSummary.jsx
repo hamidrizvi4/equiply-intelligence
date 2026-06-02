@@ -1,4 +1,3 @@
-import React from "react";
 import { ShieldAlert, AlertTriangle, Server, Award } from "lucide-react";
 
 export default function ExecutiveSummary({ data = [] }) {
