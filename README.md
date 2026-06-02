@@ -37,6 +37,35 @@ Because we could not rely on external databases, we built a robust pattern-match
 * **Data Visualization:** Custom SVG charts (no external charting library)
 * **Icons:** Lucide-React
 
+## 📸 Screenshots
+
+### Dashboard Overview
+The main analytics dashboard displays critical metrics and lifecycle status at a glance:
+- **Total Assets:** 801 medical devices across 25+ types
+- **Critical Devices:** 478 units (60%) requiring urgent replacement planning
+- **Warning Status:** 207 units approaching end-of-life
+- **Date Confidence:** 52% of serials parsed with high confidence, 48% with fallback logic
+
+![Dashboard Overview](docs/screenshots/01-dashboard-overview.png)
+
+### Device Type Distribution
+Interactive donut chart showing the breakdown of all equipment types with real-time percentages:
+- Patient Monitors (25.1%) — the largest category
+- Defibrillators (15.4%), Infusion Pumps (19.7%)
+- 20+ additional specialized medical device types
+- Toggle between Device Type and Lifecycle Status views
+
+![Device Distribution](docs/screenshots/02-device-distribution.png)
+
+### Enriched Data Table
+Fully sorted table showing all enriched equipment records:
+- **Columns:** Manufacturer, Model, Serial Number, Device Type, Manufactured Date, Status, Confidence %
+- **Sorted ascending by manufactured date** — equipment from 2010–2016 visible
+- **Status indicators:** Critical (red), Warning (yellow), Good (green)
+- **Confidence bars:** Visual indicator of serial number parsing accuracy (100% or 30%)
+
+![Data Table](docs/screenshots/03-enriched-table.png)
+
 ## 💻 Running the Project Locally
 
 To run this dashboard on your local machine:
