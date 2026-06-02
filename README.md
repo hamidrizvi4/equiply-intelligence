@@ -18,7 +18,7 @@
   * **Domain Classification:** Uses a custom medical dictionary to instantly map generic models (e.g., "ZOLL RSERIES") to standard EAM categories (e.g., "Defibrillator").
 * **Predictive Lifecycle Engine:** Calculates the age of every asset and flags equipment as 🟢 Good, 🟡 Warning, or 🔴 Critical based on specific device-type lifespans.
 * **Data Confidence Scoring:** Automatically flags rows that require manual auditing if serial number extraction falls back to default logic.
-* **Interactive EAM Dashboard:** Built with Tailwind CSS and Recharts. Includes advanced filtering, search, and real-time KPI generation (Total Assets, Data Health, Critical Replacements).
+* **Interactive EAM Dashboard:** Built with Tailwind CSS and hand-crafted SVG visualizations (zero charting dependencies). Includes advanced filtering, search, and real-time KPI generation (Total Assets, Data Health, Critical Replacements).
 * **One-Click Export:** Strips application-specific UI metadata and exports a clean, enriched CSV perfectly formatted for the "Minimum Submission" tier requirements.
 
 ## 🧠 How the Data Pipeline Works (The Logic)
@@ -34,7 +34,7 @@ Because we could not rely on external databases, we built a robust pattern-match
 * **Framework:** React (Vite)
 * **Styling:** Tailwind CSS (Custom Light Mode Theme)
 * **Data Parsing:** PapaParse (Fast, in-browser CSV processing)
-* **Data Visualization:** Recharts
+* **Data Visualization:** Custom SVG charts (no external charting library)
 * **Icons:** Lucide-React
 
 ## 💻 Running the Project Locally

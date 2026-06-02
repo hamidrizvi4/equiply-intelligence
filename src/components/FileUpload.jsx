@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { Upload, FileSpreadsheet, AlertCircle, Database } from 'lucide-react';
+import { useState, useRef } from 'react';
+import { Upload, AlertCircle, Database } from 'lucide-react';
 
 export default function FileUpload({ onDataLoaded }) {
   const [isDragActive, setIsDragActive] = useState(false);
@@ -84,11 +84,11 @@ GE HEALTHCARE,APEX PRO CH,220912`;
 
       const blob = new Blob([csvContent], { type: 'text/csv' });
       const file = new File([blob], 'demo_equipment_inventory.csv', { type: 'text/csv' });
-      
+
       const { processPipeline } = await import('../utils/dataPipeline');
       const data = await processPipeline(file);
-      
-      // Delay slightly to show a premium loading state transitions
+
+      // Delay slightly to show a premium loading state transition
       setTimeout(() => {
         onDataLoaded(data);
         setLoading(false);
@@ -102,23 +102,23 @@ GE HEALTHCARE,APEX PRO CH,220912`;
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[70vh] px-4">
-      {/* Background decoration elements */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-[20%] left-[10%] w-[350px] h-[350px] rounded-full bg-purple-500/10 blur-[100px] animate-pulse"></div>
-        <div className="absolute bottom-[20%] right-[10%] w-[400px] h-[400px] rounded-full bg-indigo-500/10 blur-[120px]"></div>
+      {/* Subtle background accent — tuned for the light theme */}
+      <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div className="absolute top-[18%] left-[8%] w-[360px] h-[360px] rounded-full bg-brand-accent/10 blur-[110px]"></div>
+        <div className="absolute bottom-[18%] right-[8%] w-[420px] h-[420px] rounded-full bg-sky-300/20 blur-[130px]"></div>
       </div>
 
       <div className="w-full max-w-2xl text-center mb-8">
-        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-purple-400 via-indigo-300 to-indigo-500 bg-clip-text text-transparent mb-3">
+        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-brand-textMain mb-3">
           Equipment Lifecycle Analyzer
         </h1>
-        <p className="text-gray-400 text-lg max-w-md mx-auto">
+        <p className="text-brand-textMuted text-lg max-w-md mx-auto">
           Enrich inventory CSVs, extract manufacturing dates from serials, and analyze lifecycle risk.
         </p>
       </div>
 
-      {/* Main glassmorphism card */}
-      <div className="w-full max-w-xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(99,102,241,0.15)] rounded-2xl p-8 transition-all duration-300">
+      {/* Main upload card */}
+      <div className="w-full max-w-xl bg-brand-surface border border-brand-border shadow-xl shadow-slate-200/60 rounded-2xl p-8 transition-all duration-300">
         <form
           onDragEnter={handleDrag}
           onDragOver={handleDrag}
@@ -127,8 +127,8 @@ GE HEALTHCARE,APEX PRO CH,220912`;
           onClick={triggerFileInput}
           className={`relative group border-2 border-dashed rounded-xl p-10 cursor-pointer transition-all duration-300 flex flex-col items-center justify-center min-h-[260px] ${
             isDragActive
-              ? 'border-indigo-400 bg-indigo-500/10 scale-[1.02]'
-              : 'border-white/15 hover:border-purple-400/50 hover:bg-white/5'
+              ? 'border-brand-accent bg-brand-accent/5 scale-[1.02]'
+              : 'border-brand-border hover:border-brand-accent/60 hover:bg-brand-bg'
           }`}
         >
           <input
@@ -143,50 +143,50 @@ GE HEALTHCARE,APEX PRO CH,220912`;
           {loading ? (
             <div className="flex flex-col items-center space-y-4">
               <div className="relative w-16 h-16">
-                <div className="absolute inset-0 rounded-full border-4 border-indigo-500/20"></div>
-                <div className="absolute inset-0 rounded-full border-4 border-t-indigo-400 animate-spin"></div>
+                <div className="absolute inset-0 rounded-full border-4 border-brand-accent/20"></div>
+                <div className="absolute inset-0 rounded-full border-4 border-t-brand-accent animate-spin"></div>
               </div>
-              <p className="text-indigo-200 font-medium animate-pulse">Processing CSV pipeline...</p>
+              <p className="text-brand-accent font-medium animate-pulse">Processing CSV pipeline...</p>
             </div>
           ) : (
             <>
               <div className={`p-4 rounded-full mb-4 transition-all duration-300 ${
-                isDragActive 
-                  ? 'bg-indigo-500/20 text-indigo-300 scale-110' 
-                  : 'bg-white/5 text-gray-400 group-hover:text-purple-300 group-hover:bg-purple-500/10'
+                isDragActive
+                  ? 'bg-brand-accent/15 text-brand-accent scale-110'
+                  : 'bg-brand-bg text-brand-textMuted group-hover:text-brand-accent group-hover:bg-brand-accent/10'
               }`}>
-                <Upload size={36} className="animate-bounce" />
+                <Upload size={36} />
               </div>
-              <h3 className="text-xl font-semibold text-gray-200 mb-2">
+              <h3 className="text-xl font-semibold text-brand-textMain mb-2">
                 {isDragActive ? 'Drop your file here' : 'Drag & Drop your CSV file'}
               </h3>
-              <p className="text-gray-400 text-sm text-center max-w-xs mb-1">
+              <p className="text-brand-textMuted text-sm text-center max-w-xs mb-1">
                 or click to browse your computer
               </p>
-              <p className="text-xs text-gray-500 mt-4 bg-white/5 px-3 py-1 rounded-full border border-white/5">
-                Required headers: <span className="font-mono text-gray-400">manufacturer</span>, <span className="font-mono text-gray-400">model</span>, <span className="font-mono text-gray-400">serial number</span>
+              <p className="text-xs text-brand-textMuted mt-4 bg-brand-bg px-3 py-1 rounded-full border border-brand-border">
+                Required headers: <span className="font-mono text-brand-textMain">manufacturer</span>, <span className="font-mono text-brand-textMain">model</span>, <span className="font-mono text-brand-textMain">serial number</span>
               </p>
             </>
           )}
         </form>
 
         {error && (
-          <div className="mt-4 flex items-center gap-2 text-red-400 bg-red-500/10 border border-red-500/20 px-4 py-3 rounded-lg text-sm">
+          <div className="mt-4 flex items-center gap-2 text-rose-700 bg-rose-50 border border-rose-200 px-4 py-3 rounded-lg text-sm">
             <AlertCircle size={18} className="shrink-0" />
             <span>{error}</span>
           </div>
         )}
 
         <div className="relative flex py-5 items-center">
-          <div className="flex-grow border-t border-white/10"></div>
-          <span className="flex-shrink mx-4 text-gray-500 text-xs font-semibold uppercase tracking-wider">or</span>
-          <div className="flex-grow border-t border-white/10"></div>
+          <div className="flex-grow border-t border-brand-border"></div>
+          <span className="flex-shrink mx-4 text-brand-textMuted text-xs font-semibold uppercase tracking-wider">or</span>
+          <div className="flex-grow border-t border-brand-border"></div>
         </div>
 
         <button
           onClick={(e) => { e.stopPropagation(); loadDemoData(); }}
           disabled={loading}
-          className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-300 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] disabled:opacity-50 active:scale-[0.98]"
+          className="w-full flex items-center justify-center gap-2 bg-brand-accent hover:bg-brand-accentHover text-white font-semibold py-3 px-4 rounded-xl transition-all duration-300 shadow-lg shadow-brand-accent/20 disabled:opacity-50 active:scale-[0.98] cursor-pointer"
         >
           <Database size={18} />
           Load Demo Dataset
